@@ -1,0 +1,56 @@
+@import './CrossBrowser';
+
+@mixin generalBtn(){
+    @include borderRadius(9999px);
+    border: none;
+    padding: 5px 10px;
+    font-size: .9rem;
+    font-weight: 700;
+    filter: brightness(80%);
+        -webkit-filter: brightness(80%);
+    &:hover{
+        filter: brightness(100%);
+        -webkit-filter: brightness(100%);
+    }
+}
+
+@mixin separatorWithText($margin){
+    display: flex;
+    align-items: center;
+    text-align: center;
+    &::before, &::after{
+        content: " ";
+        flex: 1;
+        border-bottom: 1px solid;
+    }
+    &::before{
+        margin-right: $margin;
+    }
+    &::after{
+        margin-left: $margin;
+    }
+}
+
+@mixin generalInputText($minWidth){
+    min-width: $minWidth;
+    @include borderRadius(5px);
+    border: none;
+    padding: 5px 1rem;
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: .75rem;
+    outline: none;
+}
+
+@mixin toggleBtn(){
+    width: 50px;
+    height: 25px;
+    @include borderRadius(9999px);
+    border: 1px solid;
+    div{
+        width: 23px;
+        height: 23px;
+        @include borderRadius(50%);
+        @include transition(margin-left, 1s, ease);
+    }
+}

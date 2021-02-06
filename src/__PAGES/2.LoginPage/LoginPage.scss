@@ -1,0 +1,73 @@
+@import '../../_SCSS/General';
+@import '../../_SCSS/CrossBrowser';
+#login-page{
+    width: 100%;
+    height: 100vh;
+    background-color: #0d0d0d;
+    .container{
+        padding-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            img{
+                width: 100px;
+                height: 100px;
+            }
+            span{
+                font-size: 3rem;
+                color: white;
+                font-weight: bold;
+            }
+        }
+        #login-fb{
+            @include generalBtn();
+            min-width: 300px;
+            color: white;
+            background-color: #3b5998;
+            margin-bottom: .5rem;
+        }
+        .separator{
+            @include separatorWithText(.5rem);
+            min-width:300px;
+            text-transform: uppercase;
+            font-size: .9rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: .5rem;
+            &::before, &::after{
+                border-color: white;
+            }
+        }
+        input{
+            @include generalInputText(300px);
+            background-color:#282828;
+            color: white;
+        }
+        .remember{
+            min-width: 300px;
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            .toggle-btn{
+                @include toggleBtn();
+                .toggle{
+                    background-color:white;
+                    cursor: pointer;
+                }
+            }
+        }
+        #login{
+            @include generalBtn();
+            background-color: #00d95f;
+            color: white;
+            min-width: 150px;
+        }
+    }
+}
