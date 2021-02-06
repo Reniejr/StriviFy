@@ -9,7 +9,8 @@ const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID,
 
     scopes = 'user-read-private%20user-read-email%20user-top-read',
 
-    redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI,
+    //redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI,
+    redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI_ONLINE,
 
     authUrl = `${process.env.REACT_APP_SPOTIFY_AUTH_URL}?client_id=${clientId}&response_type=code&redirect_uri=${process.env.REACT_APP_SPOTIFY_REDIRECT_URI}&scope=${scopes}&state=34fFs29kd09`
 
