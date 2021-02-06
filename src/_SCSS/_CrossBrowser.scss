@@ -13,3 +13,8 @@
     -ms-transition: $property $duration $style;
     -o-transition: $property $duration $style;
 }
+
+@mixin animation ($animation, $duration, $style, $times){
+    animation: $animation $duration $style $times;
+    -webkit-animation: $animation $duration $style $times;
+}

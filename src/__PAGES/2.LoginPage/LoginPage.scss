@@ -55,12 +55,10 @@
             color: white;
             font-weight: 600;
             margin-bottom: 1rem;
-            .toggle-btn{
-                @include toggleBtn();
-                .toggle{
-                    background-color:white;
-                    cursor: pointer;
-                }
+            position: relative;
+            .toast{
+                top: -4rem;
+                right: -90%;
             }
         }
         #login{

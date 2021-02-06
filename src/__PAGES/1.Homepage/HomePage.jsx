@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 
 //REDUX IMPORTS
 import { createUser } from "../../_STORE/User/actions";
+import { setToken } from "../../_STORE/Spotify/actions";
 
 //UTILITIES IMPORTS
+import { getRefreshToken } from "../../__UTILITIES/Spotify";
 
 //PERSONAL COMPONENTS IMPORTS
 import LoginPage from "../2.LoginPage/LoginPage";
@@ -16,6 +18,7 @@ const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
   createUser: (user) => dispatch(createUser(user)),
+  setToken: (token) => dispatch(setToken(token)),
 });
 
 class HomePage extends PureComponent {
@@ -32,12 +35,15 @@ class HomePage extends PureComponent {
     ) {
       this.props.createUser(user);
     }
-    console.log(user);
+    // console.log(user);
   }
   render() {
+    // console.log(this.props);
     return (
       <div id="home-page">
-        {this.props.spotify.token === null ? <LoginPage /> : <p>Connected</p>}
+        <button onClick={() => getRefreshToken(this.props.spotify.token)}>
+          get refresh token
+        </button>
       </div>
     );
   }
