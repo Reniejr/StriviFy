@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/StriviFy/static/css/main.ee53119c.chunk.css",
-    "main.js": "/StriviFy/static/js/main.4b3345d2.chunk.js",
-    "main.js.map": "/StriviFy/static/js/main.4b3345d2.chunk.js.map",
+    "main.js": "/StriviFy/static/js/main.070985e2.chunk.js",
+    "main.js.map": "/StriviFy/static/js/main.070985e2.chunk.js.map",
     "runtime-main.js": "/StriviFy/static/js/runtime-main.9fe8b5d0.js",
     "runtime-main.js.map": "/StriviFy/static/js/runtime-main.9fe8b5d0.js.map",
     "static/css/2.150d169a.chunk.css": "/StriviFy/static/css/2.150d169a.chunk.css",
-    "static/js/2.913a4587.chunk.js": "/StriviFy/static/js/2.913a4587.chunk.js",
-    "static/js/2.913a4587.chunk.js.map": "/StriviFy/static/js/2.913a4587.chunk.js.map",
+    "static/js/2.adeacaf3.chunk.js": "/StriviFy/static/js/2.adeacaf3.chunk.js",
+    "static/js/2.adeacaf3.chunk.js.map": "/StriviFy/static/js/2.adeacaf3.chunk.js.map",
     "static/js/3.d4bd703d.chunk.js": "/StriviFy/static/js/3.d4bd703d.chunk.js",
     "static/js/3.d4bd703d.chunk.js.map": "/StriviFy/static/js/3.d4bd703d.chunk.js.map",
     "index.html": "/StriviFy/index.html",
     "static/css/2.150d169a.chunk.css.map": "/StriviFy/static/css/2.150d169a.chunk.css.map",
     "static/css/main.ee53119c.chunk.css.map": "/StriviFy/static/css/main.ee53119c.chunk.css.map",
-    "static/js/2.913a4587.chunk.js.LICENSE.txt": "/StriviFy/static/js/2.913a4587.chunk.js.LICENSE.txt"
+    "static/js/2.adeacaf3.chunk.js.LICENSE.txt": "/StriviFy/static/js/2.adeacaf3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9fe8b5d0.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.913a4587.chunk.js",
+    "static/js/2.adeacaf3.chunk.js",
     "static/css/main.ee53119c.chunk.css",
-    "static/js/main.4b3345d2.chunk.js"
+    "static/js/main.070985e2.chunk.js"
   ]
 }
