@@ -32,6 +32,11 @@ class RouterWeb extends PureComponent {
             render={(props) => <HomePage {...props} />}
           />
           <Route path="/" exact render={(props) => <LoginPage {...props} />} />
+          <Route
+            path="/?code"
+            exact
+            render={(props) => <LoginPage {...props} />}
+          />
         </Switch>
       </Router>
     );
