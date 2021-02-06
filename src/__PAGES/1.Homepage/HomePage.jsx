@@ -9,7 +9,6 @@ import { setToken } from "../../_STORE/Spotify/actions";
 import { getRefreshToken } from "../../__UTILITIES/Spotify";
 
 //PERSONAL COMPONENTS IMPORTS
-import LoginPage from "../2.LoginPage/LoginPage";
 
 //STYLE
 import "./HomePage.scss";

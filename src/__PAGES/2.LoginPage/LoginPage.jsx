@@ -40,15 +40,6 @@ const mapDispatchToProps = (dispatch) => ({
   setCode: (code) => dispatch(getURLCode(code)),
 });
 
-// const code = () => {
-//   let params = new URLSearchParams(document.location.search.substring(1)),
-//     code = params.get("code");
-//   console.log(code);
-//   return code;
-// };
-
-// const codeToimport = code();
-
 class LoginPage extends PureComponent {
   state = {
     user: {
