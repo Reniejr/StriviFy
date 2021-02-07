@@ -1,5 +1,8 @@
 @import './CrossBrowser';
 
+$primary:#1ed760;
+$whiteHalf:rgba(255,255,255, .7);
+
 @mixin generalBtn(){
     @include borderRadius(9999px);
     border: none;

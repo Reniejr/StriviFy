@@ -6,8 +6,7 @@ import { createUser } from "../../_STORE/User/actions";
 import { setToken } from "../../_STORE/Spotify/actions";
 
 //UTILITIES IMPORTS
-import { getRefreshToken } from "../../__UTILITIES/Spotify";
-
+import { searchFetch, getPlaylistFetch } from "../../__UTILITIES";
 //PERSONAL COMPONENTS IMPORTS
 
 //STYLE
@@ -22,27 +21,28 @@ const mapDispatchToProps = (dispatch) => ({
 
 class HomePage extends PureComponent {
   componentDidMount() {
-    const user = {
-      username: localStorage.getItem("username"),
-      password: localStorage.getItem("password"),
-    };
-    if (
-      this.props.user.userList.filter(
-        (users) => users.username === user.username
-      ).length === 0 &&
-      user.username !== null
-    ) {
-      this.props.createUser(user);
-    }
+    // const user = {
+    //   username: localStorage.getItem("username"),
+    //   password: localStorage.getItem("password"),
+    // };
+    // if (
+    //   this.props.user.userList.filter(
+    //     (users) => users.username === user.username
+    //   ).length === 0 &&
+    //   user.username !== null
+    // ) {
+    //   this.props.createUser(user);
+    // }
     // console.log(user);
+    if (this.props.spotify.token) {
+      getPlaylistFetch();
+    }
   }
   render() {
     // console.log(this.props);
     return (
       <div id="home-page">
-        <button onClick={() => getRefreshToken(this.props.spotify.token)}>
-          get refresh token
-        </button>
+        <button onClick={() => searchFetch()}>get refresh token</button>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import { SPOTIFY_TOKEN, URL_CODE} from './constants'
+import { SPOTIFY_TOKEN, URL_CODE, REFRESH_TOKEN} from './constants'
 
 export const spotifyReducer = (state = { token: null, refresh_token: null, code: null }, action) => {
     const { type, payload } = action
@@ -13,6 +13,11 @@ export const spotifyReducer = (state = { token: null, refresh_token: null, code:
             return {
                 ...state,
                 code: payload
+            }
+        case REFRESH_TOKEN:
+            return {
+                ...state,
+                token: payload
             }
         default: return state
     }

@@ -64,3 +64,52 @@ export class LogoStart extends React.PureComponent {
     );
   }
 }
+
+//FILTERS BOX
+export class FilterBox extends React.PureComponent {
+  render() {
+    let { type, search, start, show, showFilter } = this.props;
+    return (
+      <>
+        <span className="show-filters" onClick={show}>
+          Show filters
+        </span>
+        <div className="filters" style={{ display: showFilter ? "" : "none" }}>
+          <div>
+            <input
+              type="checkbox"
+              id="artist"
+              onChange={type}
+              onKeyDown={search}
+              checked={start === "artist" ? true : false}
+            />{" "}
+            <label htmlFor="artist">Artist</label>
+            <input
+              type="checkbox"
+              id="album"
+              onChange={type}
+              onKeyDown={search}
+            />{" "}
+            <label htmlFor="album">Album</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="track"
+              onChange={type}
+              onKeyDown={search}
+            />{" "}
+            <label htmlFor="track">Track</label>
+            <input
+              type="checkbox"
+              id="playlist"
+              onChange={type}
+              onKeyDown={search}
+            />{" "}
+            <label htmlFor="playlist">Playlist</label>
+          </div>
+        </div>
+      </>
+    );
+  }
+}

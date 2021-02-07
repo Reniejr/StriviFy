@@ -1,0 +1,131 @@
+@import '../../../_SCSS/CrossBrowser';
+@import '../../../_SCSS/General';
+@import '../../../_SCSS/Positions';
+#sidebar{
+    max-width: 250px;
+    height: calc(100vh - 5rem);
+    padding: 1rem;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: $whiteHalf;
+    @include transition(margin-left, 1s, ease);
+    .toggle{
+        content: " ";
+        width: 20px;
+        height: 100px;
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        @include translate(0, -50%);
+        background-color: inherit;
+        border-top-right-radius: 9999px;
+        border-bottom-right-radius: 9999px;
+    }
+    .logo-sidebar{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        img{
+            width: 50px;
+            height: 50px;
+        }
+        span{
+            font-size:2.5rem;
+            font-weight: 800;
+            margin-left: .5rem;
+            color: $primary;
+        }
+    }
+    input[type=text]{
+        @include generalInputText(90%);
+        max-width: 90%;
+    }
+    .menu{
+        height: 60vh;
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content: space-between;
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            #create-playlist{
+                padding: 0.5rem;
+                overflow: hidden;
+                input{
+                    width: 100%;
+                    margin: 0;
+                    margin-right: auto;
+                    background-color: transparent;
+                    color:white;
+                    border-bottom: 1px solid white;
+                    @include borderRadius(0px)
+                }
+            }
+            li{
+                width: 100%;
+                padding: .5rem;
+                display:flex;
+                align-items: center;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor:pointer;
+                &:hover{
+                    color: white;
+                }
+                i, ion-icon{
+                    font-size:1.5rem;
+                    margin-right: .5rem;
+                }
+                a{
+                    color: $whiteHalf;
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    &:hover{
+                        color: white;
+                    }
+                }
+            }
+        }
+        .install{
+            width: 100%;
+            text-align: center;
+            i{
+                margin-right: .5rem;
+            }
+            span{
+                font-size: .9rem;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+            hr{
+                background-color: $whiteHalf;
+            }
+        }
+    }
+    .login{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        img{
+            @include borderRadius(50%);
+            width: 30px;
+            height: 30px;
+        }
+        button{
+            @include generalBtn();
+            width: 125px;
+            background-color: transparent;
+            color: white;
+            border: 2px solid $primary;
+        }
+    }
+}

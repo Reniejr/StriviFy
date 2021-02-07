@@ -8,7 +8,8 @@ import { getUser } from "../../../__UTILITIES";
 //PERSONAL COMPONENTS IMPORTS
 import HomePage from "../../../__PAGES/1.Homepage/HomePage";
 import LoginPage from "../../../__PAGES/2.LoginPage/LoginPage";
-
+import SideBar from "../3.SideBar/SideBar";
+import Player from "../4.Player/Player";
 //REDUX IMPORTS
 
 //UTILITIES IMPORTS
@@ -25,17 +26,14 @@ class RouterWeb extends PureComponent {
   render() {
     return (
       <Router id="router-web">
+        <SideBar />
+        <Player />
         <Switch>
+          <Route path="/" exact render={(props) => <LoginPage {...props} />} />
           <Route
             path="/home"
             exact
             render={(props) => <HomePage {...props} />}
-          />
-          <Route path="/" exact render={(props) => <LoginPage {...props} />} />
-          <Route
-            path="/?code"
-            exact
-            render={(props) => <LoginPage {...props} />}
           />
         </Switch>
       </Router>

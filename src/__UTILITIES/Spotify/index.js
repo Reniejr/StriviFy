@@ -9,11 +9,15 @@ const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID,
 
     scopes = 'user-read-private%20user-read-email%20user-top-read',
 
-    // redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI,
+    redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI,
     // //ONLINE
-    redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI_ONLINE,
+    // redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI_ONLINE,
 
-    authUrl = `${process.env.REACT_APP_SPOTIFY_AUTH_URL}?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirect_URI)}&scope=${scopes}&state=34fFs29kd09`
+    authUrl = `${process.env.REACT_APP_SPOTIFY_AUTH_URL}?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(redirect_URI)}&scope=${scopes}&state=34fFs29kd09`,
+
+    playlistUrl = 'https://api.spotify.com/v1/browse/categories',
+
+    searchUrl = 'https://api.spotify.com/v1/search?q='
 
 //REFRESH TOKEN
 export const getRefreshToken = async (expiredToken) => {
@@ -56,4 +60,30 @@ export const getCode = () => {
       code = params.get("code");
     // console.log(code);
     return code;
-  };
+};
+  
+//GET PLAYLIST
+export const getPlaylist = async (token) => {
+    const response = await fetch(playlistUrl, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization' : `Bearer ${token}`
+        }
+    }),
+        result = await response.json()
+    // console.log(result)
+    return result
+}
+
+//GET SEARCH
+export const getSearch = async (token, query, type) => {
+    const response = await fetch(`${searchUrl}${query}&type=${type}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization' : `Bearer ${token}`
+        }
+    }),
+        result = await response.json()
+    console.log(result)
+    return result
+}
