@@ -1,6 +1,6 @@
 import store from '../_STORE'
 import { REFRESH_TOKEN } from '../_STORE/Spotify/constants'
-import { getSearch, getRefreshToken, getPlaylist} from './Spotify'
+import { getSearch, getRefreshToken, getPlaylist, getBrowse, getTracksPlaylist} from './Spotify'
 
 // export const getDetails = () => {console.log(store.getState(), refreshToken)}
 
@@ -32,6 +32,35 @@ export const getPlaylistFetch = async () => {
         await getPlaylist(spotifyStore.token)
     }
 }
+
+//GET BROWSE
+export const getBrowseFetch = async (categoryId) => {
+    const spotifyStore = store.getState().spotify
+    let result
+    if (spotifyStore.token) {
+        result = await getBrowse(spotifyStore.token, categoryId)
+    } else {
+        await setNewToken()
+        result = await getBrowse(spotifyStore.token, categoryId)
+    }
+    return result
+}
+
+//GET TRACKS FROM PLAYLIST
+export const getTracksPlaylistFetch = async (url) => {
+    const spotifyStore = store.getState().spotify
+    let result
+    if (spotifyStore.token) {
+        result = await getTracksPlaylist(spotifyStore.token, url)
+    } else {
+        await setNewToken()
+        result = await getTracksPlaylist(spotifyStore.token, url)
+    }
+    return result
+}
+
+
+
 
 //FETCH
 export const getUser = async (query) => {

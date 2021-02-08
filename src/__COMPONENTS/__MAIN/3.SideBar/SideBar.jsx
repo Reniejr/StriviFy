@@ -4,27 +4,28 @@ import { Link, withRouter } from "react-router-dom";
 //REDUX IMPORTS
 import { connect } from "react-redux";
 import { refreshToken } from "../../../_STORE/Spotify/actions";
+import { toggleSide } from "../../../_STORE/SideBar/actions";
 
 //UTILITIES IMPORTS
 import { searchFetch } from "../../../__UTILITIES";
 
-//STYLE
-import "./SideBar.scss";
-
 //PERSONAL COMPONENTS IMPORTS
 import { FilterBox } from "../2.General/General";
+
+//STYLE
+import "./SideBar.scss";
 
 //REDUX
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
   setRefreshToken: (token) => dispatch(refreshToken(token)),
+  toggleSide: () => dispatch(toggleSide()),
 });
 
 class SideBar extends PureComponent {
   state = {
     showPlaylist: false,
-    toggleBar: true,
     search: {
       query: "",
       type: ["artist"],
@@ -35,10 +36,6 @@ class SideBar extends PureComponent {
 
   showPlaylist = () => {
     this.setState({ showPlaylist: !this.state.showPlaylist });
-  };
-
-  showSidebar = () => {
-    this.setState({ toggleBar: !this.state.toggleBar });
   };
 
   search = async (e) => {
@@ -78,11 +75,11 @@ class SideBar extends PureComponent {
       <nav
         id="sidebar"
         style={{
-          marginLeft: this.state.toggleBar ? "" : "-250px",
+          marginLeft: this.props.sideBar.toggle ? "" : "-250px",
           display: this.props.location.pathname === "/" ? "none" : "",
         }}
       >
-        <div className="toggle" onClick={() => this.showSidebar()}></div>
+        <div className="toggle" onClick={() => this.props.toggleSide()}></div>
         <div className="logo-sidebar">
           <img src="./assets/spotify.png" alt="" />
           <span>Strivify</span>

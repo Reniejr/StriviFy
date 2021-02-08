@@ -11,6 +11,7 @@
     bottom:0;
     display: flex;
     background-color: black;
+    z-index: 9999;
     .song-info{
         width: 20%;
         display: flex;

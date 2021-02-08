@@ -13,6 +13,7 @@
     top: 0;
     left: 0;
     color: $whiteHalf;
+    z-index: 9999;
     @include transition(margin-left, 1s, ease);
     .toggle{
         content: " ";

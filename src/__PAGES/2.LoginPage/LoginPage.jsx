@@ -106,7 +106,7 @@ class LoginPage extends PureComponent {
     this.props.setCode(code);
     if (code) {
       this.setState({ start: false });
-      console.log(this.props);
+      // console.log(this.props);
     } else {
       setTimeout(() => {
         this.setState({ start: false });

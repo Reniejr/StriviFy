@@ -17,7 +17,9 @@ const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID,
 
     playlistUrl = 'https://api.spotify.com/v1/browse/categories',
 
-    searchUrl = 'https://api.spotify.com/v1/search?q='
+    searchUrl = 'https://api.spotify.com/v1/search?q=',
+
+    browseCatUrl = 'https://api.spotify.com/v1/browse/categories/'
 
 //REFRESH TOKEN
 export const getRefreshToken = async (expiredToken) => {
@@ -78,6 +80,32 @@ export const getPlaylist = async (token) => {
 //GET SEARCH
 export const getSearch = async (token, query, type) => {
     const response = await fetch(`${searchUrl}${query}&type=${type}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization' : `Bearer ${token}`
+        }
+    }),
+        result = await response.json()
+    console.log(result)
+    return result
+}
+
+//GET BROWSE
+export const getBrowse = async (token, categoryId) => {
+    const response = await fetch(`${browseCatUrl}${categoryId}/playlists?limit=5&offset=0`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization' : `Bearer ${token}`
+        }
+    }),
+        result = await response.json()
+    console.log(result)
+    return result
+}
+
+//GET TRACKS FROM PLAYLIST
+export const getTracksPlaylist = async (token, url) => {
+    const response = await fetch(url, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Authorization' : `Bearer ${token}`

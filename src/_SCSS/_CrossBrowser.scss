@@ -26,3 +26,11 @@
     -ms-transform: translate($x-axis, $y-axis);
     -o-transform: translate($x-axis, $y-axis);
 }
+
+@mixin transform($property, $value){
+    transform: $property($value);
+    -webkit-transform: $property($value);
+    -moz-transform: $property($value);
+    -ms-transform: $property($value);
+    -o-transform: $property($value);
+}

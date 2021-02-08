@@ -1,0 +1,6 @@
+@import '../../_SCSS/General';
+@import '../../_SCSS/CrossBrowser';
+@import '../../_SCSS/Positions';
+#home-page{
+    @include transition(all, 1s, ease);
+}

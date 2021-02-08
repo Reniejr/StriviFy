@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 
 //REACT BOOTSTRAP
-import { Toast } from "react-bootstrap";
+import { Toast, Col } from "react-bootstrap";
 
 //STYLE
 import "./General.scss";
@@ -110,6 +110,33 @@ export class FilterBox extends React.PureComponent {
           </div>
         </div>
       </>
+    );
+  }
+}
+
+//STRIVIFYCARD
+export class StrivifyCard extends React.PureComponent {
+  render() {
+    let { image, title, artist, onClick, tracks } = this.props;
+    return (
+      <div
+        xs={12}
+        md={3}
+        className="strivify-card"
+        style={{
+          backgroundImage: `url(${image})`,
+          marginBottom: artist ? "3.5rem" : "2.5rem",
+        }}
+        onClick={() => onClick(tracks)}
+      >
+        <div
+          className="strivify-card-header"
+          style={{ bottom: artist ? "-2.75rem" : "-1.75rem" }}
+        >
+          <p>{title ? title : ""}</p>
+          {artist ? <p>{artist}</p> : ""}
+        </div>
+      </div>
     );
   }
 }

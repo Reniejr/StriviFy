@@ -1,0 +1,40 @@
+@import '../../../_SCSS/Positions';
+@import '../../../_SCSS/General';
+@import '../../../_SCSS/CrossBrowser';
+
+#topBar{
+    list-style: none;
+    margin: 0;
+    margin-top: 1.5rem;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size:.8rem;
+    font-weight: 700;
+    li{
+        margin: 0 .5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        p{
+            margin-bottom: 2px;
+        }
+        span{
+            content: " ";
+            border-bottom: 2px solid limegreen;
+            @include transition(width, 1s, ease);
+            width: 1px;
+            visibility: hidden;
+        }
+        &:hover{
+            span{
+                width: 100%;
+                visibility: visible;
+                @include transition(width, 300ms, ease);
+            }
+        }
+    }
+}
