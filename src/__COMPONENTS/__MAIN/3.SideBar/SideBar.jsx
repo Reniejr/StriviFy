@@ -81,7 +81,7 @@ class SideBar extends PureComponent {
       >
         <div className="toggle" onClick={() => this.props.toggleSide()}></div>
         <div className="logo-sidebar">
-          <img src="./assets/spotify.png" alt="" />
+          <img src="https://i.ibb.co/c8rjG5S/spotify.png" alt="" />
           <span>Strivify</span>
         </div>
         <input

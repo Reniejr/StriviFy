@@ -70,7 +70,7 @@ export class LogoStart extends React.PureComponent {
   render() {
     return (
       <div className="logo">
-        <img src="./assets/spotify.png" alt="" />
+        <img src="https://i.ibb.co/c8rjG5S/spotify.png" alt="" />
       </div>
     );
   }

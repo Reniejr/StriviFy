@@ -126,7 +126,7 @@ class LoginPage extends PureComponent {
           ) : (
             <Container>
               <header>
-                <img src="./assets/spotify.png" alt="" />
+                <img src="https://i.ibb.co/c8rjG5S/spotify.png" alt="" />
                 <span>Strivify</span>
               </header>
               <button id="login-fb">Log in with Facebook</button>
