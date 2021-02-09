@@ -2,12 +2,17 @@ import React, { PureComponent } from "react";
 
 //REDUX IMPORTS
 import { connect } from "react-redux";
+import { setPlaylist } from "../../../_STORE/Spotify/actions";
 
 //UTILITIES IMPORTS
-import { getBrowseFetch, getTracksPlaylistFetch } from "../../../__UTILITIES";
+import {
+  getBrowseFetch,
+  getTracksPlaylistFetch,
+  setNewToken,
+} from "../../../__UTILITIES";
 
 //PERSONAL COMPONENTS
-import { StrivifyCard } from "../../__MAIN/2.General/General";
+import StrivifyCard from "../../__MAIN/5.StrivifyCard/StrivifyCard";
 
 //STYLE
 import "./Trending.scss";
@@ -17,6 +22,10 @@ import { Row } from "react-bootstrap";
 
 //REDUX
 const mapStateToProps = (state) => state;
+
+const mapDispatchToProps = (dispatch) => ({
+  setPlaylist: (playlist) => dispatch(setPlaylist(playlist)),
+});
 
 class Trending extends PureComponent {
   state = {
@@ -28,14 +37,15 @@ class Trending extends PureComponent {
     if (this.props.spotify.token) {
       const results = await getBrowseFetch("toplists");
       this.setState({ results: results.playlists.items });
-      //   console.log(results.playlists.items);
+      // console.log(results.playlists.items);
+    } else {
+      await setNewToken();
+      const results = await getBrowseFetch("toplists");
+      this.setState({ results: results.playlists.items });
+      // console.log(results);
     }
-  };
-
-  getTracks = async (url) => {
-    const results = await getTracksPlaylistFetch(url);
-    let audio = new Audio(results.items[0].track.preview_url);
-    audio.play();
+    let player = document.getElementById("player-from-spotify");
+    console.log(player);
   };
 
   render() {
@@ -48,10 +58,11 @@ class Trending extends PureComponent {
               this.state.results.map((result) => {
                 return (
                   <StrivifyCard
+                    key={result.id}
                     image={result.images[0].url}
                     title={result.name}
-                    tracks={result.tracks.href}
-                    onClick={this.getTracks}
+                    id={result.id}
+                    type="playlist"
                     // artist={result.type}
                   />
                 );
@@ -66,4 +77,4 @@ class Trending extends PureComponent {
   }
 }
 
-export default connect(mapStateToProps)(Trending);
+export default connect(mapStateToProps, mapDispatchToProps)(Trending);

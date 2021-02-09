@@ -1,0 +1,14 @@
+.strivify-card{
+    width: 175px;
+    height: 175px;
+    background-size: cover;
+    margin-right: 1rem;
+    position: relative;
+    .strivify-card-header{
+        position: absolute;
+        font-weight: 700;
+        p{
+            margin: 0;
+        }
+    }
+}

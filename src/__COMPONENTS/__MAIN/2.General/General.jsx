@@ -1,10 +1,21 @@
 import React, { PureComponent } from "react";
+import { connect } from "react-redux";
+
+//REDUX IMPORTS
+import { setPlaylist } from "../../../_STORE/Spotify/actions";
 
 //REACT BOOTSTRAP
 import { Toast, Col } from "react-bootstrap";
 
 //STYLE
 import "./General.scss";
+
+//REDUX
+const mapStateToProps = (state) => state;
+
+const mapDispatchToProps = (dispatch) => ({
+  setPlaylist: (playlist) => dispatch(setPlaylist(playlist)),
+});
 
 //TOAST
 export class ToastDev extends PureComponent {
@@ -110,33 +121,6 @@ export class FilterBox extends React.PureComponent {
           </div>
         </div>
       </>
-    );
-  }
-}
-
-//STRIVIFYCARD
-export class StrivifyCard extends React.PureComponent {
-  render() {
-    let { image, title, artist, onClick, tracks } = this.props;
-    return (
-      <div
-        xs={12}
-        md={3}
-        className="strivify-card"
-        style={{
-          backgroundImage: `url(${image})`,
-          marginBottom: artist ? "3.5rem" : "2.5rem",
-        }}
-        onClick={() => onClick(tracks)}
-      >
-        <div
-          className="strivify-card-header"
-          style={{ bottom: artist ? "-2.75rem" : "-1.75rem" }}
-        >
-          <p>{title ? title : ""}</p>
-          {artist ? <p>{artist}</p> : ""}
-        </div>
-      </div>
     );
   }
 }

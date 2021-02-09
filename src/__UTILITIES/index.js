@@ -2,18 +2,20 @@ import store from '../_STORE'
 import { REFRESH_TOKEN } from '../_STORE/Spotify/constants'
 import { getSearch, getRefreshToken, getPlaylist, getBrowse, getTracksPlaylist} from './Spotify'
 
-// export const getDetails = () => {console.log(store.getState(), refreshToken)}
+// export const getDetails = () => {console.log(store.getState())}
 
 //REFRESH STATE TOKEN
 export const setNewToken = async () => {
     const spotifyStore = store.getState().spotify
     const newToken = await getRefreshToken(spotifyStore.refresh_token)
+    // console.log(spotifyStore)
     await store.dispatch({type:REFRESH_TOKEN, payload: newToken})
 }
 
 //SEARCH
 export const searchFetch = async (search) => {
     const spotifyStore = store.getState().spotify
+    // console.log(spotifyStore.token)
     if (spotifyStore.token) {
      await getSearch(spotifyStore.token, search.query, search.type )   
     } else {
@@ -25,6 +27,7 @@ export const searchFetch = async (search) => {
 //GET PLAYLIST
 export const getPlaylistFetch = async () => {
     const spotifyStore = store.getState().spotify
+    // console.log(spotifyStore.token)
     if (spotifyStore.token) {
      await getPlaylist(spotifyStore.token)   
     } else {
@@ -36,19 +39,22 @@ export const getPlaylistFetch = async () => {
 //GET BROWSE
 export const getBrowseFetch = async (categoryId) => {
     const spotifyStore = store.getState().spotify
+    // console.log(spotifyStore.token)
     let result
-    if (spotifyStore.token) {
+    if (spotifyStore.token !== null || spotifyStore.token !== undefined) {
         result = await getBrowse(spotifyStore.token, categoryId)
     } else {
-        await setNewToken()
+        setNewToken()
         result = await getBrowse(spotifyStore.token, categoryId)
     }
+    // console.log(result)
     return result
 }
 
 //GET TRACKS FROM PLAYLIST
 export const getTracksPlaylistFetch = async (url) => {
     const spotifyStore = store.getState().spotify
+    // console.log(spotifyStore.token)
     let result
     if (spotifyStore.token) {
         result = await getTracksPlaylist(spotifyStore.token, url)
