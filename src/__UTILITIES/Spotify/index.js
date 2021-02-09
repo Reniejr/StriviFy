@@ -90,7 +90,7 @@ export const getSearch = async (token, query, type) => {
 //GET BROWSE
 export const getBrowse = async (token, categoryId) => {
   const response = await fetch(
-      `${browseCatUrl}${categoryId}/playlists?country=US&limit=5&offset=0`,
+      `${browseCatUrl}${categoryId}/playlists?country=IT&limit=5&offset=0`,
       {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
