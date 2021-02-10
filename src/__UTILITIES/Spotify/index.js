@@ -4,9 +4,9 @@ const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID,
   credentialsDecrypt = "Basic " + btoa(`${clientId}:${clientSecret}`),
   tokenUrl = process.env.REACT_APP_SPOTIFY_TOKEN_URL,
   scopes = "user-read-private%20user-read-email%20user-top-read",
-  // redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI,
+  redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI,
   // //ONLINE
-  redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI_ONLINE,
+  // redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI_ONLINE,
   authUrl = `${
     process.env.REACT_APP_SPOTIFY_AUTH_URL
   }?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(
@@ -75,15 +75,18 @@ export const getPlaylist = async (token) => {
 };
 
 //GET SEARCH
-export const getSearch = async (token, query, type) => {
-  const response = await fetch(`${searchUrl}${query}&type=${type}`, {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${token}`,
-      },
-    }),
+export const getSearch = async (token, search) => {
+  const response = await fetch(
+      `${searchUrl}${search.query}&type=${search.type}&limit=${search.limit}`,
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ),
     result = await response.json();
-  console.log(result);
+  // console.log(result);
   return result;
 };
 
@@ -99,7 +102,7 @@ export const getBrowse = async (token, categoryId) => {
       }
     ),
     result = await response.json();
-  console.log(result);
+  // console.log(result);
   return result;
 };
 
@@ -112,6 +115,6 @@ export const getTracksPlaylist = async (token, url) => {
       },
     }),
     result = await response.json();
-  console.log(result);
+  // console.log(result);
   return result;
 };

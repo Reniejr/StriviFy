@@ -80,6 +80,7 @@ class LoginPage extends PureComponent {
       token: tokens.access_token,
       refresh_token: tokens.refresh_token,
     };
+    localStorage.setItem("refresh_token", tokens.refresh_token);
     this.props.setToken(tokens);
     await this.setState({ redirect: true });
   };
