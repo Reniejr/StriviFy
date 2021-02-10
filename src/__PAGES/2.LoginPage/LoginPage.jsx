@@ -12,11 +12,6 @@ import { setUserList, loggedUser } from "../../_STORE/User/actions";
 import { setToken, getURLCode } from "../../_STORE/Spotify/actions";
 
 //UTILITIES IMPORTS
-import {
-  getAuthorized,
-  getAuthToken,
-  getCode,
-} from "../../__UTILITIES/Spotify";
 
 import { newUser, getUser } from "../../__UTILITIES";
 

@@ -4,9 +4,9 @@ const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID,
   credentialsDecrypt = "Basic " + btoa(`${clientId}:${clientSecret}`),
   tokenUrl = process.env.REACT_APP_SPOTIFY_TOKEN_URL,
   scopes = "user-read-private%20user-read-email%20user-top-read",
-  redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI,
+  // redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI,
   // //ONLINE
-  // redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI_ONLINE,
+  redirect_URI = process.env.REACT_APP_SPOTIFY_REDIRECT_URI_ONLINE,
   authUrl = `${
     process.env.REACT_APP_SPOTIFY_AUTH_URL
   }?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(
