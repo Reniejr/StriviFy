@@ -5,18 +5,20 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 // REACT BOOTSTRAP
+import { Alert } from "react-bootstrap";
 
 //REDUX IMPORTS
-import { createUser } from "../../_STORE/User/actions";
+import { setUserList, loggedUser } from "../../_STORE/User/actions";
 import { setToken, getURLCode } from "../../_STORE/Spotify/actions";
 
 //UTILITIES IMPORTS
 import {
   getAuthorized,
   getAuthToken,
-  getRefreshToken,
   getCode,
 } from "../../__UTILITIES/Spotify";
+
+import { newUser, getUser } from "../../__UTILITIES";
 
 //STYLE
 import "./LoginPage.scss";
@@ -29,91 +31,85 @@ import {
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  createUser: (user) =>
-    dispatch((dispatch, getState) => {
-      dispatch(createUser(user));
-    }),
   setToken: (token) =>
     dispatch((dispatch, getState) => {
       dispatch(setToken(token));
     }),
   setCode: (code) => dispatch(getURLCode(code)),
+  setUserList: (userList) => dispatch(setUserList(userList)),
+  loggedUser: (user) => dispatch(loggedUser(user)),
 });
 
 class LoginPage extends PureComponent {
   state = {
     user: {
-      username: null,
+      userName: null,
       password: null,
+      email: null,
     },
     toggle: false,
     toastState: false,
-    start: true,
     redirect: false,
+    registered: true,
+    alert: false,
   };
 
-  toggle = () => {
-    let toggle = !this.state.toggle;
-    this.setState({ toggle: !this.state.toggle });
-    if (toggle) {
-      this.remember();
-      console.log(localStorage.getItem("username"));
+  toggle = async () => {
+    if (this.state.user.email) {
+      let toggle = !this.state.toggle;
+      this.setState({ toggle: !this.state.toggle });
+      if (toggle) {
+        await newUser(this.state.user);
+        const userList = await getUser();
+        this.props.setUserList(userList);
+        // console.log(localStorage.getItem("username"));
+      }
+    } else {
+      this.setState({ alert: true });
+      setTimeout(() => {
+        this.setState({ alert: false });
+      }, 1500);
     }
   };
 
   fillLogin = (e) => {
-    let user = { ...this.state.user },
-      currentId = e.currentTarget.id;
-    user[currentId] = e.currentTarget.value;
-    this.setState({ user });
-    if (!this.state.user.password) {
-      this.closeToast();
+    if (e.keyCode === 13 || e.key === "Enter") {
+      this.login();
     } else {
-      this.toastShow();
+      let user = { ...this.state.user },
+        currentId = e.currentTarget.id;
+      user[currentId] = e.currentTarget.value;
+      this.setState({ user });
+      if (!this.state.user.password) {
+        this.setState({ toastState: false });
+      } else {
+        this.setState({ toastState: true });
+      }
     }
   };
 
   login = async () => {
-    let tokens = await getAuthToken(this.props.spotify.code);
-    // console.log(tokens.refresh_token);
-    tokens = await {
-      token: tokens.access_token,
-      refresh_token: tokens.refresh_token,
-    };
-    localStorage.setItem("refresh_token", tokens.refresh_token);
-    this.props.setToken(tokens);
-    await this.setState({ redirect: true });
-  };
+    //VALIDATION
+    let validation = this.props.user.userList.filter(
+      (user) =>
+        user.userName === this.state.user.userName &&
+        user.password === this.state.user.password
+    );
 
-  getRefreshToken = () => {
-    getRefreshToken();
-  };
-
-  remember = () => {
-    localStorage.setItem("username", this.state.user.username);
-    localStorage.setItem("password", this.state.user.password);
-  };
-
-  toastShow = () => {
-    this.setState({ toastState: true });
-  };
-
-  closeToast = () => {
-    this.setState({ toastState: false });
-  };
-
-  componentDidMount = () => {
-    const code = getCode();
-    this.props.setCode(code);
-    if (code) {
-      this.setState({ start: false });
-      // console.log(this.props);
+    if (validation.length > 0) {
+      this.props.loggedUser(validation[0]);
+      await this.setState({ redirect: true });
     } else {
+      this.setState({ alert: true });
       setTimeout(() => {
-        this.setState({ start: false });
-        getAuthorized();
-      }, 1800);
+        this.setState({ alert: false });
+      }, 1500);
     }
+  };
+
+  componentDidMount = async () => {
+    const userList = await getUser();
+    this.props.setUserList(userList);
   };
 
   render() {
@@ -122,10 +118,16 @@ class LoginPage extends PureComponent {
     } else {
       return (
         <div id="login-page">
-          {this.state.start ? (
+          {this.props.start ? (
             <LogoStart />
           ) : (
             <Container>
+              <Alert
+                variant="danger"
+                style={{ display: this.state.alert ? "" : "none" }}
+              >
+                Oops! Something went wrong! Check your credentials
+              </Alert>
               <header>
                 <img src="https://i.ibb.co/c8rjG5S/spotify.png" alt="" />
                 <span>Strivify</span>
@@ -134,7 +136,7 @@ class LoginPage extends PureComponent {
               <div className="separator">Or</div>
               <input
                 type="text"
-                id="username"
+                id="userName"
                 placeholder="Username"
                 onChange={this.fillLogin}
               />
@@ -143,12 +145,27 @@ class LoginPage extends PureComponent {
                 id="password"
                 placeholder="Password"
                 onChange={this.fillLogin}
+                onKeyDown={this.fillLogin}
+              />
+              <p
+                onClick={() =>
+                  this.setState({ registered: !this.state.registered })
+                }
+              >
+                Not Register to Strivify yet?
+              </p>
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                onChange={this.fillLogin}
+                style={{ display: this.state.registered ? "none" : "" }}
               />
               <div className="remember">
                 <span>Remember me</span>
                 <ToastDev
                   toastState={this.state.toastState}
-                  close={this.closeToast}
+                  close={() => this.setState({ toastState: false })}
                 >
                   Click here to create an account on our database
                 </ToastDev>

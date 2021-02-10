@@ -25,7 +25,7 @@ export class ToastDev extends PureComponent {
       <Toast style={{ opacity: toastState ? "1" : "0" }}>
         <Toast.Header>
           <img
-            src="./assets/spotify.png"
+            src="https://i.ibb.co/c8rjG5S/spotify.png"
             className="rounded mr-2"
             alt=""
             width="20px"

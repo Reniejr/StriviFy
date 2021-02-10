@@ -71,6 +71,21 @@ export const getUser = async (query) => {
     : (url = `${process.env.REACT_APP_STRIVIFY_DB_ONLINE}/strivify/user`);
   const response = await fetch(url),
     result = await response.json();
-  // console.log(result)
+  // console.log(result);
+  return result;
+};
+
+//POST NEW USER
+export const newUser = async (body) => {
+  let url = `${process.env.REACT_APP_STRIVIFY_DB_ONLINE}/strivify/user`;
+  const response = await fetch(url, {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
+  });
+  const result = await response.json();
+  // console.log(result);
   return result;
 };

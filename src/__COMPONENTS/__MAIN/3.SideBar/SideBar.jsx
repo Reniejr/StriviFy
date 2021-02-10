@@ -133,9 +133,25 @@ class SideBar extends PureComponent {
           </div>
         </div>
         <div className="login">
-          <img src="" alt="" />
+          <div className="user">
+            <img
+              src={
+                this.props.loggedUser && this.props.user.loggedUser.profile
+                  ? this.props.user.loggedUser.profile
+                  : ""
+              }
+              alt=""
+            />
+            <p>
+              {this.props.user.loggedUser
+                ? this.props.user.loggedUser.userName
+                : ""}
+            </p>
+          </div>
           <button>
-            <span>Log in</span>
+            <Link to="/">
+              {this.props.user.loggedUser ? "Log out" : "Log in"}
+            </Link>
           </button>
         </div>
       </nav>
