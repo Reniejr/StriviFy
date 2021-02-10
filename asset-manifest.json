@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/StriviFy/static/css/main.63e78902.chunk.css",
-    "main.js": "/StriviFy/static/js/main.a926df6d.chunk.js",
-    "main.js.map": "/StriviFy/static/js/main.a926df6d.chunk.js.map",
+    "main.css": "/StriviFy/static/css/main.1e8f1a15.chunk.css",
+    "main.js": "/StriviFy/static/js/main.54252942.chunk.js",
+    "main.js.map": "/StriviFy/static/js/main.54252942.chunk.js.map",
     "runtime-main.js": "/StriviFy/static/js/runtime-main.b8755953.js",
     "runtime-main.js.map": "/StriviFy/static/js/runtime-main.b8755953.js.map",
     "static/css/2.150d169a.chunk.css": "/StriviFy/static/css/2.150d169a.chunk.css",
@@ -12,14 +12,14 @@
     "static/js/3.db401b98.chunk.js.map": "/StriviFy/static/js/3.db401b98.chunk.js.map",
     "index.html": "/StriviFy/index.html",
     "static/css/2.150d169a.chunk.css.map": "/StriviFy/static/css/2.150d169a.chunk.css.map",
-    "static/css/main.63e78902.chunk.css.map": "/StriviFy/static/css/main.63e78902.chunk.css.map",
+    "static/css/main.1e8f1a15.chunk.css.map": "/StriviFy/static/css/main.1e8f1a15.chunk.css.map",
     "static/js/2.c3498b35.chunk.js.LICENSE.txt": "/StriviFy/static/js/2.c3498b35.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b8755953.js",
     "static/css/2.150d169a.chunk.css",
     "static/js/2.c3498b35.chunk.js",
-    "static/css/main.63e78902.chunk.css",
-    "static/js/main.a926df6d.chunk.js"
+    "static/css/main.1e8f1a15.chunk.css",
+    "static/js/main.54252942.chunk.js"
   ]
 }
