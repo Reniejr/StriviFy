@@ -6,6 +6,7 @@ import {
   getPlaylist,
   getBrowse,
   getTracksPlaylist,
+  getNewReleases,
 } from "./Spotify";
 
 // export const getDetails = () => {console.log(store.getState())}
@@ -28,20 +29,28 @@ export const searchFetch = async (search) => {
 };
 
 //GET PLAYLIST
-export const getPlaylistFetch = async () => {
+export const getPlaylistFetch = async (playlistId) => {
   const spotifyStore = store.getState().spotify;
   // console.log(spotifyStore.token)
   let result;
-  result = await getPlaylist(spotifyStore.token);
+  result = await getPlaylist(spotifyStore.token, playlistId);
   return result;
 };
 
 //GET BROWSE
-export const getBrowseFetch = async (categoryId) => {
+export const getBrowseFetch = async (categoryId, limit) => {
   const spotifyStore = store.getState().spotify;
   // console.log(spotifyStore.token)
   let result;
-  result = await getBrowse(spotifyStore.token, categoryId);
+  result = await getBrowse(spotifyStore.token, categoryId, limit);
+  return result;
+};
+
+//GET NEW RELEASES
+export const fetchNewReleases = async (limit) => {
+  const spotifyStore = store.getState().spotify;
+  let result;
+  result = await getNewReleases(spotifyStore.token, limit);
   return result;
 };
 

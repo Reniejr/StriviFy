@@ -1,72 +1,49 @@
 import React, { PureComponent } from "react";
+import { Link, withRouter } from "react-router-dom";
 
 //STYLE
 import "./TopBar.scss";
 
-export default class TopBar extends PureComponent {
-  underline = {
-    textDecoration: "underline",
-    textDecorationThickness: "2px",
-    textDecorationColor: "limegreen",
-    textUnderlineOffset: ".5rem",
-  };
-
-  selectedLi = (selected, actual) => {
+class TopBar extends PureComponent {
+  selected = (path) => {
     let style = {};
-    actual === selected ? (style = this.underline) : (style = {});
+    let clicked = {
+      width: "100%",
+      visibility: "visible",
+    };
+    let noClicked = {};
+    this.props.location.pathname === path
+      ? (style = clicked)
+      : (style = noClicked);
     return style;
   };
 
   render() {
-    let { select, selected } = this.props;
     return (
       <ul id="topBar">
         <li>
-          <p
-            onClick={(e) => select(e)}
-            style={this.selectedLi(selected, "Trending")}
-          >
-            Trending
-          </p>
-          <span></span>
+          <Link to="/home">Trending</Link>
+          <span style={this.selected("/home")}></span>
         </li>
         <li>
-          <p
-            onClick={(e) => select(e)}
-            style={this.selectedLi(selected, "Podcast")}
-          >
-            Podcast
-          </p>
-          <span></span>
+          <Link to="/home/podcast">Podcast</Link>
+          <span style={this.selected("/home/podcast")}></span>
         </li>
         <li>
-          <p
-            onClick={(e) => select(e)}
-            style={this.selectedLi(selected, "Moods And Genres")}
-          >
-            Moods And Genres
-          </p>
-          <span></span>
+          <Link to="/home/moods">Moods And Genres</Link>
+
+          <span style={this.selected("/home/moods")}></span>
         </li>
         <li>
-          <p
-            onClick={(e) => select(e)}
-            style={this.selectedLi(selected, "New Releases")}
-          >
-            New Releases
-          </p>
-          <span></span>
+          <Link to="/home/new-releases">New Releases</Link>
+          <span style={this.selected("/home/new-releases")}></span>
         </li>
         <li>
-          <p
-            onClick={(e) => select(e)}
-            style={this.selectedLi(selected, "Discover")}
-          >
-            Discover
-          </p>
-          <span></span>
+          <Link to="/home/discover">Discover</Link>
+          <span style={this.selected("/home/discover")}></span>
         </li>
       </ul>
     );
   }
 }
+export default withRouter(TopBar);

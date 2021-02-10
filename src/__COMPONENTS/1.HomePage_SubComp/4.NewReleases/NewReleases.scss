@@ -1,0 +1,30 @@
+@import '../../../_SCSS/CrossBrowser';
+#new-releases{
+    width: 100%;
+    padding: 2rem;
+    color: #fff;
+    h2{
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 900;
+    }
+    .row{
+        margin: 0;
+        padding: 0;
+        .strivify-card{
+            @include borderRadius(50%);
+            margin-left: 2rem;
+            .strivify-card-header{
+                margin-bottom: -.5rem;
+                text-align: center;
+                width: 100%;
+                p:nth-of-type(1){
+                }
+                p:nth-of-type(2){
+                    font-size: .85rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

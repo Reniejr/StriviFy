@@ -1,16 +1,19 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 //REDUX IMPORTS
 import { createUser } from "../../_STORE/User/actions";
 import { setToken } from "../../_STORE/Spotify/actions";
 
 //UTILITIES IMPORTS
-import { searchFetch, getPlaylistFetch } from "../../__UTILITIES";
 
 //PERSONAL COMPONENTS IMPORTS
 import TopBar from "../../__COMPONENTS/1.HomePage_SubComp/0.TopBar/TopBar";
 import Trending from "../../__COMPONENTS/1.HomePage_SubComp/1.Trending/Trending";
+import Podcast from "../../__COMPONENTS/1.HomePage_SubComp/2.Podcast/Podcast";
+import Moods from "../../__COMPONENTS/1.HomePage_SubComp/3.Moods/Moods";
+import NewReleases from "../../__COMPONENTS/1.HomePage_SubComp/4.NewReleases/NewReleases";
 
 //STYLE
 import "./HomePage.scss";
@@ -23,10 +26,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class HomePage extends PureComponent {
-  state = {
-    topBar: "",
-  };
-
   componentDidMount() {
     // const user = {
     //   username: localStorage.getItem("username"),
@@ -41,24 +40,42 @@ class HomePage extends PureComponent {
     //   this.props.createUser(user);
     // }
     // console.log(user);
-    if (this.props.spotify.token) {
-      getPlaylistFetch();
-    }
   }
-
-  topBarSelect = (e) => {
-    this.setState({ topBar: e.currentTarget.textContent });
-  };
 
   render() {
     // console.log(this.props);
     return (
       <div
         id="home-page"
-        style={{ paddingLeft: this.props.sideBar.toggle ? "250px" : "" }}
+        style={{
+          paddingLeft: this.props.sideBar.toggle ? "250px" : "",
+        }}
       >
-        <TopBar select={this.topBarSelect} selected={this.state.topBar} />
-        <Trending />
+        <Router>
+          <TopBar />
+          <Switch>
+            <Route
+              path="/home"
+              exact
+              render={(props) => <Trending {...props} />}
+            />
+            <Route
+              path="/home/podcast"
+              exact
+              render={(props) => <Podcast {...props} />}
+            />
+            <Route
+              path="/home/moods"
+              exact
+              render={(props) => <Moods {...props} />}
+            />
+            <Route
+              path="/home/new-releases"
+              exact
+              render={(props) => <NewReleases {...props} />}
+            />
+          </Switch>
+        </Router>
       </div>
     );
   }

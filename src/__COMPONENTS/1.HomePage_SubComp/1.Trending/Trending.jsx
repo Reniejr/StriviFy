@@ -31,12 +31,12 @@ class Trending extends PureComponent {
 
   browseFetch = async () => {
     if (this.props.spotify.token) {
-      const results = await getBrowseFetch("toplists");
+      const results = await getBrowseFetch("toplists", 5);
       this.setState({ topHits: results.playlists.items });
       // console.log(results);
     } else {
       await setNewToken();
-      const results = await getBrowseFetch("toplists");
+      const results = await getBrowseFetch("toplists", 5);
       this.setState({ topHits: results.playlists.items });
       // console.log(results);
     }

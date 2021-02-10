@@ -30,11 +30,7 @@ class RouterWeb extends PureComponent {
         <Player />
         <Switch>
           <Route path="/" exact render={(props) => <LoginPage {...props} />} />
-          <Route
-            path="/home"
-            exact
-            render={(props) => <HomePage {...props} />}
-          />
+          <Route path="/home" render={(props) => <HomePage {...props} />} />
         </Switch>
       </Router>
     );

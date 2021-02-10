@@ -4,5 +4,6 @@
 #home-page{
     @include transition(all, 1s, ease);
     height: 100%;
+    overflow-x: hidden;
     overflow-y: auto;
 }

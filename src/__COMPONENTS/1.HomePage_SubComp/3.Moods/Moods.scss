@@ -1,7 +1,7 @@
-#trending{
+#moods-genres{
     width:100%;
     padding: 2rem;
-    .top-hits, .top-50{
+    .moods, .genres{
         color: #fff;
         h2{
             font-size: 3rem;
@@ -12,7 +12,7 @@
             margin: 0;
         }
     }
-    .top-hits{
+    .moods{
         margin-bottom: 2rem;
     }
 }

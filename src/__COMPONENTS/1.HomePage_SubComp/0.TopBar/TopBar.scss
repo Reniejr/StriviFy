@@ -20,14 +20,16 @@
         flex-direction: column;
         align-items: center;
         cursor: pointer;
-        p{
+        a{
             margin-bottom: 2px;
+            color: #fff;
+            text-decoration: none;
         }
         span{
             content: " ";
             border-bottom: 2px solid limegreen;
             @include transition(width, 1s, ease);
-            width: 1px;
+            width: '1px';
             visibility: hidden;
         }
         &:hover{

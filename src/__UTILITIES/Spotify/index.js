@@ -12,9 +12,10 @@ const clientId = process.env.REACT_APP_SPOTIFY_CLIENT_ID,
   }?client_id=${clientId}&response_type=code&redirect_uri=${encodeURIComponent(
     redirect_URI
   )}&scope=${scopes}&state=34fFs29kd09`,
-  playlistUrl = "https://api.spotify.com/v1/browse/categories",
+  playlistUrl = "https://api.spotify.com/v1/playlists/",
   searchUrl = "https://api.spotify.com/v1/search?q=",
-  browseCatUrl = "https://api.spotify.com/v1/browse/categories/";
+  browseCatUrl = "https://api.spotify.com/v1/browse/categories/",
+  browseUrl = "https://api.spotify.com/v1/browse/";
 
 //REFRESH TOKEN
 export const getRefreshToken = async (expiredToken) => {
@@ -62,8 +63,8 @@ export const getCode = () => {
 };
 
 //GET PLAYLIST
-export const getPlaylist = async (token) => {
-  const response = await fetch(playlistUrl, {
+export const getPlaylist = async (token, playlistId) => {
+  const response = await fetch(`${playlistUrl}${playlistId}`, {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${token}`,
@@ -91,16 +92,40 @@ export const getSearch = async (token, search) => {
 };
 
 //GET BROWSE
-export const getBrowse = async (token, categoryId) => {
-  const response = await fetch(
-      `${browseCatUrl}${categoryId}/playlists?country=IT&limit=5&offset=0`,
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    ),
+export const getBrowse = async (token, categoryId, limit) => {
+  let url;
+
+  categoryId
+    ? limit
+      ? (url = `${browseCatUrl}${categoryId}/playlists?country=IT&limit=${limit}`)
+      : (url = `${browseCatUrl}${categoryId}/playlists?country=IT`)
+    : limit
+    ? (url = `${browseCatUrl}?country=IT&limit=${limit}`)
+    : (url = browseCatUrl);
+
+  const response = await fetch(`${url}&offset=0`, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+    result = await response.json();
+  // console.log(result);
+  return result;
+};
+
+//GET NEW RELEASES
+export const getNewReleases = async (token, limit) => {
+  let url;
+  limit
+    ? (url = `${browseUrl}new-releases?country=IT&limit=${limit}`)
+    : (url = `${browseUrl}new-releases?country=IT`);
+  const response = await fetch(`${url}&offset=0`, {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${token}`,
+      },
+    }),
     result = await response.json();
   // console.log(result);
   return result;
