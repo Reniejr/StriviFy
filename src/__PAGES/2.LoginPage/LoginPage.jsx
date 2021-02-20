@@ -127,7 +127,11 @@ class LoginPage extends PureComponent {
                 <img src="https://i.ibb.co/c8rjG5S/spotify.png" alt="" />
                 <span>Strivify</span>
               </header>
-              <button id="login-fb">Log in with Facebook</button>
+              <button id="login-fb">
+                <a href="http://localhost:5000/strivify/user/googleLogin">
+                  Log in with Google
+                </a>
+              </button>
               <div className="separator">Or</div>
               <input
                 type="text"
